@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="./lib/weui/css/weui.css" />
+		<link rel="stylesheet" href="./lib/weui/css/weuix.css" />
+		<link rel="stylesheet" href="./lib/weui/css/main.css">
+		<link rel="stylesheet" href="./lib/weui/css/home.css">
+    	<link rel="stylesheet" href="./lib/weui/css/font.css">
+		<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+		<script src="./lib/weui/js/zepto.min.js"></script>
+		<script src="./lib/weui/js/zepto.weui.js"></script>
+		<script src="./lib/weui/js/php.js"></script>
+		<script src="./lib/weui/js/lrz.min.js"></script>
+		<script type="text/javascript" src="./lib/weui/js/layer.js"></script>
+    	<script type="text/javascript" src="./lib/weui/js/yz.common.js"></script>
+		<title>请假详细信息</title>
+		<style type="text/css">
+		.weui-cells.custom .weui-cell {
+			padding: 12px 15px;
+		}
+		.weui-cell {
+			position: initial;
+			display: flex;
+			-webkit-box-align: center;
+			align-items: center;
+		}
+		.weui-cells.custom .weui-cell .weui-cell__bd {
+			max-width: 30%;
+		}
+		.weui-cell__bd {
+			-webkit-box-flex: 1;
+			flex: 1;
+		}
+		.r-mark {
+			color: #f00;
+			padding-right: 5px;
+			font-style: normal;
+		}
+		.weui-cells.custom .weui-cell .weui-cell__ft {
+			flex: 1;
+			text-align: right;
+			color: #999999;
+		}
+		.weui-input {
+			width: 100%;
+			border: 0;
+			outline: 0;
+			-webkit-appearance: none;
+			background-color: transparent;
+			font-size: inherit;
+			color: inherit;
+			height: 1.47058824em;
+			line-height: 1.47058824;
+		}
+		.container.leavedetails .leaveinfo.notpass .info .name span {
+			color: #fff;
+		}
+		.container.leavedetails .flow>ul>li .content .ttl {
+			font-weight: 500;
+		}
+		.container.leavedetails .flow>ul>li .avatar {
+			width: 40px;
+			height: 40px;
+			font-size: 15px;
+		}
+		.container.leavedetails .leaveinfo .infodetails .box .item span {
+			font-weight: 500;
+			font-size: 16px;
+		}
+		.container.leavedetails .leaveinfo .explain .box .infocontent {
+			margin: 0;
+			flex: 1;
+			font-weight: 500;
+			color: #3961b0;
+		}
+		.container.leavedetails .leaveinfo.pass .info .name span {
+			  color: #FFF;
+		}
+		#fhan{
+			transform:rotate(-180deg);
+		}
+		.info .weui-cell__ft:after {
+			content: " ";
+			display: inline-block;
+			height: 6px;
+			width: 6px;
+			border-width: 2px 2px 0 0;
+			border-color: #C8C8CD;
+			border-style: solid;
+			transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+			position: absolute;
+			top: 50%;
+			margin-top: -4px;
+			right: 10px;
+		}
+		.container.leavedetails .leaveinfo.pass:after {
+			right: 55px;
+			top: 67px;
+		}
+		.container.leavedetails .leaveinfo.notpass:after {
+			right: 55px;
+			top: 67px;
+		}
+		</style>
+	</head>
+	<body>
+	<div class="container leavedetails">
+		<div class="topbar" style="height: 52px;">
+		   <div class="top-head">
+			  <div>
+				<a onclick="goback();">
+					<i class="iconfont icon-back"style="color: #FFF;"></i>
+				</a>
+			  </div>
+			  <div>请假信息</div>
+			   <div>
+					<a  href="./index.html">
+					  <i class="iconfont icon-fangzi" style="color: #FFF;"></i>
+				 </a>
+			   </div>  
+			</div>
+		 </div>
+		<!--审核通过 调用class  pass   为通过调用  notpass-->
+		<div class="leaveinfo pass" >
+		<a href="./userinfo.html" target="_blank">	  
+		<form id="form1" name="form1">  
+			<div class="info gcp" data-target="/wx/xg/yz-mobile/userInfo.jsp" data-form="form1" style="position:relative;" >
+				<div class="avatar" style="width: 45px;height: 45px;font-size: 17px;">
+					宇轩
+				</div>
+				<div class="name">
+					<span style="font-size: 16px;">宇轩</span>
+					<span style="font-size: 12px;color: #cac0c0fa;">审批已通过</span>
+				</div>
+				<div class="weui-cell__ft"></div>
+			</div>
+			</form></a>
+			<div class="infodetails">
+				<div class="box">
+					<div class="item">
+						<span class="title">所在学院</span>
+						<span>计算机学院</span>
+					</div>
+				</div>
+				<div class="box">
+					<div class="item">
+						<span class="title">请假类型</span>
+						<span>私事</span>
+					</div>
+					<div class="item">
+						<span class="title">请假时长</span>
+						<span id="qjsxs">3天0小时</span>
+					</div>
+				</div>
+				<div class="box">
+					<div class="item">
+						<span class="title">请假开始时间</span>
+						<span>2021-08-26 10时</span>
+					</div>
+					<div class="item">
+						<span class="title">请假结束时间</span>
+						<span>2021-08-29 10时</span>
+					</div>
+				</div>
+			</div>
+			<div class="explain" style="border-top: #f3f3f3 0px solid; margin-top: -30px;overflow: auto;">
+				<div class="box">
+					<span class="title">行程范围</span>
+					<p class="infocontent">西安市内</p>
+				</div>
+				<div class="box">
+					<span class="title">事由说明</span>
+					<p class="infocontent" style="white-space: pre-line">私事</p>
+				</div>
+				
+				<div class="box">
+					<span class="title">前往目的地</span>
+					<p class="infocontent">西安市</p>
+				</div>
+				
+				
+				
+				<div class="box">
+					<!-- 此处的type表示请假延期还是销假；1：请假延期;2为销假 -->
+					   
+					<a href="/wx/xg/xsqj/qjsq/qjxc_add.jsp?id=e67t4gw0ch29r7dh6douu462dq7ltjh6&mark=qjsq_info&lb=xs" style="width: 45%;height: 46px;margin-top: 15px;background-color: #54c3d2;color: #fff;" class="weui-btn bg-blue">添加行程</a>
+					
+					<a href="/wx/xg/xsqj/qjsq/qjsq_xsxj.jsp?id=e67t4gw0ch29r7dh6douu462dq7ltjh6" style="width: 45%;background-color: #46ad77;color: #fff;" class="weui-btn bg-blue">销假</a>
+				</div>
+			   
+				
+				
+				
+			</div>
+		</div>
+		<div class="flow">
+			<ul>
+				<li>
+					<!--审核通过 调用class  pass   为通过调用  notpass-->
+					<div class="avatar">
+						宇轩
+					</div>
+					<div class="content">
+						<div class="ttl"><span class="text" style="font-size: 16px;">发起申请</span> <span class="time">08-26 12:50</span></div>
+					</div>
+				</li>
+				
+				
+				
+				<li>
+					<!--审核通过 调用class  pass   为通过调用  notpass-->
+					<div class="avatar pass">
+						艳宁
+					</div>
+					<div class="content">
+						<div class="ttl"><span class="text" style="font-size: 16px;">张艳宁审核（已通过）</span> <span class="time">08-26 12:54</span></div>
+						<div class="ctn">同意</div>
+					</div>
+				</li>
+				
+				<li>
+					<!--审核通过 调用class  pass   为通过调用  notpass-->
+					<div class="avatar pass">
+						海东
+					</div>
+					<div class="content">
+						<div class="ttl"><span class="text" style="font-size: 16px;">万海东审核（已通过）</span> <span class="time">08-26 15:22</span></div>
+						<div class="ctn">同意</div>
+					</div>
+				</li>
+				
+				
+				
+				
+				
+				<li>
+					<div class="pointer">
+						<i class="icon"></i>
+					</div>
+					<div class="content pointer">
+						<div class="ttl">审批共耗时2小时32分钟</div>
+					</div>
+				</li>
+				
+			</ul>
+		</div>
+		<div class="footer-copy-space"></div>
+	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#titlebtn").click(function () {
+				let titlebtn = $("#titlebtn");
+				let titlecontent = $("#titlecontent");
+				if (titlecontent.is(':hidden')) {
+					titlebtn.removeClass("up").addClass("dowm");
+					$("#titlecontent").show();
+				}else{
+					titlebtn.removeClass("dowm").addClass("up");
+					$("#titlecontent").hide();
+				}
+			});
+		});
+		
+		function cancelQj(id){
+			$.confirm("您确定驳回该请假申请?", "提示", function() {
+				$.ajax({
+					url:'/wx/xg/xsqj/qjsh/qj_js_util.jsp',
+					data:{actionType:'cancelJsQj',id:id},
+					dataType:'json',
+					type:'post',
+					success:function(data){
+						if(data.state!=null&&data.state=='1'){
+							layer.msg('撤销成功！',{time:3000},function(){
+								goback();
+							});
+						};
+					},error:function(request, textStatus, errorThrown){
+						if(request.status==403){
+							alert("非法字符,拒绝访问！");
+						}else{
+							alert("操作出现异常，请稍后再试！"+request.status);
+						};
+					}
+				});
+			}, function() {
+				//取消操作
+			});
+		}
+		
+		
+		//返回
+		function goback(){
+			var lb = 'xs';
+			if(lb == 'xs' || lb==''){
+				window.location.href = "/wx/xg/xsqj/qjsq/qjsq_list.jsp";
+			}else if(lb == 'db'){
+				window.location.href = "/wx/xg/xsqj/qjsh/qj_js_list.jsp?flag=1";
+			}else if(lb == 'yb'){
+				window.location.href = "/wx/xg/xsqj/qjsh/qj_js_list.jsp?flag=2";
+			}else if(lb == 'yx'){
+				window.location.href = "/wx/xg/xsqj/qjsh/qj_js_list.jsp?flag=3";
+			}else if(lb == 'yxj'){
+				window.location.href = "/wx/xg/xsqj/qjsh/qj_js_list.jsp?flag=4";
+			}else {
+				window.location.href = "javascript:history.back(-1);";
+			}
+		}
+	</script>
+	<script src="./lib/weui/js/checkdev.js"></script>
+	</body>
+	</html>
